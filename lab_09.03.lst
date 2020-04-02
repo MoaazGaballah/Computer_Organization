@@ -1,0 +1,27 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;AREA soru1, CODE, READONLY
+    2 00000000         ;ENTRY
+    3 00000000         ;LDR r7, =karDizisi
+    4 00000000         ;LDR r3, =1
+    5 00000000         ;LDR r0, =0 ;karakter saayisi
+    6 00000000         ;bas LDRB r4, [r7, r3] ;karDizisi[r3] (1 karakter)
+    7 00000000         ;CMP r4, #'$'
+    8 00000000         ;BEQ son
+    9 00000000         ;ADD r0, r0, #1
+   10 00000000         ;ADD r3, r3, #1 ; go to next index
+   11 00000000         ;B bas
+   12 00000000         ;son
+   13 00000000         
+   14 00000000         ;karDizisi DCB 'f', 'a', 't', 'i', 'h'
+   15 00000000         ;karDizisi1 DCB "bilgisayar"
+   16 00000000         ;END
+                       
+Command Line: --debug --xref --bi --apcs=interwork --depend=.\lab_09.03.d -o.\l
+ab_09.03.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include --predefine="__EV
+AL SETA 1" --list=.\lab_09.03.lst lab_09.03.s
+331 symbols in table

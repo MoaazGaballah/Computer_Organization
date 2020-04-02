@@ -1,0 +1,5 @@
+Dependencies for Project '24.02.2020', Target 'Target 1': (DO NOT MODIFY !)
+F (.\test.s)(0x5E8595CA)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\test.lst --xref -o .\test.o --depend .\test.d)
+F (.\lab_24.02.s)(0x5E64E6C5)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\lab_24.02.lst --xref -o .\lab_24.02.o --depend .\lab_24.02.d)
+F (.\lab_09.03.s)(0x5E65FB30)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\lab_09.03.lst --xref -o .\lab_09.03.o --depend .\lab_09.03.d)
+F (.\odev1.s)(0x5E85BBC9)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\odev1.lst --xref -o .\odev1.o --depend .\odev1.d)

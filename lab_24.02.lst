@@ -1,0 +1,86 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             veriler, DATA,READWRITE
+    2 00000000 00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 A       DCD              0,0,0,0,0
+    3 00000014         
+    4 00000014                 AREA             RESET, CODE, READONLY
+    5 00000000                 ENTRY
+    6 00000000         ;LDR R6, =arrayA ;address
+    7 00000000         ;LDR R7, =arrayB ;address
+    8 00000000         ;MOV R0, #2 ;f
+    9 00000000         ;MOV R1, #3 ;g
+   10 00000000         ;MOV R2, #4 ;h
+   11 00000000         ;LDR R3, [R6, #16]
+   12 00000000         ;ADD R0, R1, R2; f=g+h
+   13 00000000         ;ADD R0, R1, R2, R3 ; f=f+B[4]
+   14 00000000         
+   15 00000000         ;arrayA  DCD 10, 20, 30, 40, 50
+   16 00000000         ;arrayB DCD 1, 2, 3, 2, 1
+   17 00000000         
+   18 00000000         ;LDR R6, =arrayA ;Array a address
+   19 00000000         ;LDR R7, =arrayB ;Array b address
+   20 00000000         ;MOV R1, #25 ;g
+   21 00000000         ;MOV R2, #4 
+   22 00000000         ;LDR R3, [R7, #16]
+   23 00000000         
+   24 00000000         ;MUL R5, R3, R2 ;A[1]
+   25 00000000         ;LDR R8, [R6, R5]
+   26 00000000         
+   27 00000000         ;SUB R0, R1, R8 ; f=f-A[B[4]]
+   28 00000000         
+   29 00000000         ;arrayA  DCD 10, 20, 30, 40, 50
+   30 00000000         ;arrayB DCD 1, 2, 3, 2, 1
+   31 00000000         
+   32 00000000         
+   33 00000000         
+   34 00000000                 END
+Command Line: --debug --xref --bi --apcs=interwork --depend=.\lab_24.02.d -o.\l
+ab_24.02.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include --predefine="__EV
+AL SETA 1" --list=.\lab_24.02.lst lab_24.02.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+A 00000000
+
+Symbol: A
+   Definitions
+      At line 2 in file lab_24.02.s
+   Uses
+      None
+Comment: A unused
+veriler 00000000
+
+Symbol: veriler
+   Definitions
+      At line 1 in file lab_24.02.s
+   Uses
+      None
+Comment: veriler unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 4 in file lab_24.02.s
+   Uses
+      None
+Comment: RESET unused
+1 symbol
+334 symbols in table

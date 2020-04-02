@@ -1,0 +1,1 @@
+.\homeworks.o: homeWorks.s

@@ -1,0 +1,93 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;;f=g-A[B[4]]
+    2 00000000         ;AREA veriler, DATA, READWRITE
+    3 00000000         ;Array DCD 0,0,0,0,0
+    4 00000000         ;AREA ornek, CODE, READONLY
+    5 00000000         ;ENTRY
+    6 00000000         ;LDR r6, =Adizi
+    7 00000000         ;LDR r7, =Bdizi
+    8 00000000         ;MOV r1, #25
+    9 00000000         ;LDR r3, [r7,#16] ;r3 =B[4]
+   10 00000000         ;LDR r8, [r6, r3] ;r4 =A[B[4]]
+   11 00000000         ;SUB r0, r1, r8
+   12 00000000         
+   13 00000000         
+   14 00000000         
+   15 00000000         ;Adizi DCD 10,20,30,40,50
+   16 00000000         ;Bdizi DCD 1,2,3,2,1
+   17 00000000         ;END
+   18 00000000         ;AREA ornek, CODE, READONLY
+   19 00000000         ;ENTRY
+   20 00000000         ;LDR r6, =dizi
+   21 00000000         ;LDR r7, =5
+   22 00000000         ;LDR r3, [r6]
+   23 00000000         ;bas
+   24 00000000         ;ADD r1, r1, #4
+   25 00000000         ;LDR r4, [r6, r1]
+   26 00000000         ;CMP r3, r4
+   27 00000000         ;BGT islem
+   28 00000000         ;MOV r3, r4
+   29 00000000         ;islem
+   30 00000000         ;sub r7, r7, #1
+   31 00000000         ;CMP r7, #0
+   32 00000000         ;BNE bas
+   33 00000000         ;dizi DCD 5,7,1,2,15,10 
+   34 00000000         ;END
+   35 00000000         
+   36 00000000         ;AREA soru1, CODE, READONLY
+   37 00000000         ;ENTRY
+   38 00000000         ;LDR r7, =karDizisi
+   39 00000000         ;LDR r3, =1
+   40 00000000         ;LDR r0, =0 ;karakter saayisi
+   41 00000000         ;bas LDRB r4, [r7, r3] ;karDizisi[r3] (1 karakter)
+   42 00000000         ;CMP r4, #'$'
+   43 00000000         ;BEQ son
+   44 00000000         ;ADD r0, r0, #1
+   45 00000000         ;ADD r3, r3, #1 ; go to next index
+   46 00000000         ;B bas
+   47 00000000         ;son
+   48 00000000         
+   49 00000000         ;karDizisi DCB 'f', 'a', 't', 'i', 'h', '$'
+   50 00000000         ;karDizisi1 DCB "bilgisayar"
+   51 00000000         ;END
+   52 00000000         
+   53 00000000         ;AREA soru2, CODE, READONLY
+   54 00000000         ;NUM EQU 14
+   55 00000000         ;ENTRY
+   56 00000000         ;;r0 ilk, r1 son, r2 orta, r3 index, r5 aranan, r6 dizin
+                       i adresi
+   57 00000000         ;MOV r5, #10
+   58 00000000         ;LDR r6, =dizi ;ADR r6, dizi
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   59 00000000         ;MOV r0, #0
+   60 00000000         ;MOV r1, #NUM-1 ;son elemanin index'i
+   61 00000000         ;don CMP r0, r1
+   62 00000000         ;BGT son
+   63 00000000         ;ADD r2, r0, r1
+   64 00000000         ;MOV r2, r2, ASR #1
+   65 00000000         ;LDR r7, [r6, r2, LSL #2]
+   66 00000000         ;CMP r5, r7
+   67 00000000         ;ADDGT r0, r2, #1
+   68 00000000         ;SUBLT r1, r2, #1
+   69 00000000         ;BNE don
+   70 00000000         
+   71 00000000         ;son MOV r4, r2
+   72 00000000         
+   73 00000000         
+   74 00000000         ;dizi DCD 1,2,3,4,5,6,7,8,9,10,11,12,13,14
+   75 00000000         ;END
+                       
+Command Line: --debug --xref --bi --apcs=interwork --depend=.\test.d -o.\test.o
+ -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include --predefine="__EVAL SETA 1"
+ --list=.\test.lst test.s
+331 symbols in table

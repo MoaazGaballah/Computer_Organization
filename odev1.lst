@@ -1,0 +1,170 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             ornek, CODE, READONLY
+    2 00000000                 ENTRY
+    3 00000000 E59F6068        LDR              r6, =dizi   ; dizinin address (
+                                                            dizinin baslangici)
+                                                            
+    4 00000004 E3A07004        LDR              r7, =4      ; dizinin boyutu ya
+                                                            ni hem dis hem de i
+                                                            c looplarin ust sin
+                                                            iri
+    5 00000008 E3A08000        LDR              r8, =0      ; diziye gezmek ici
+                                                            n (i=0) (dorder atl
+                                                            ayacak)
+    6 0000000C E3A09000        LDR              r9, =0      ;  distaki loop in 
+                                                            limiti kontrol etme
+                                                            k icin, distaki loo
+                                                            p in offset degeri 
+                                                            (i++)
+    7 00000010         disLoopDon
+    8 00000010 E1590007        CMP              r9, r7      ; distaki loop, diz
+                                                            inin sinirina geldi
+                                                             mi
+    9 00000014 CA000010        BGT              disLoopSon  ; distaki loop, diz
+                                                            inin sinirina geldi
+                                                            yse bitir programi
+   10 00000018 E7963008        LDR              r3, [r6, r8] ; distaki loop, di
+                                                            zinin ust sinirina 
+                                                            gelmediyse (r3 = a[
+                                                            i]) yap
+   11 0000001C         ; ------- icteki loop baslangici--------
+   12 0000001C E288A004        ADD              r10, r8, #4 ; icteki loop in li
+                                                            miti kontrol etmek 
+                                                            icin (j=i+1) yani i
+                                                            cteki loop alt sini
+                                                            ri
+   13 00000020 E1A0B009        MOV              r11, r9     ; diziye gezmek ici
+                                                            n, icteki loop in o
+                                                            ffset degeri (j++)
+   14 00000024         icLoopDon
+   15 00000024 E15B0007        CMP              r11, r7     ; icteki loop, dizi
+                                                            nin sinirina geldi 
+                                                            mi
+   16 00000028 AA000008        BGE              icLoopSon   ; icteki loop, dizi
+                                                            nin sinirina geldiy
+                                                            se bitir programi
+   17 0000002C E796400A        LDR              r4, [r6, r10] ; icteki loop, di
+                                                            zinin ust sinirina 
+                                                            gelmediyse (r4 = a[
+                                                            j]) yap
+   18 00000030         ;-------- karsilastirma ---------------
+   19 00000030 E1530004        CMP              r3, r4      ; r3 ile r4 karsila
+                                                            stir
+   20 00000034 DA000002        BLE              karsilastirmayiAtla ; kucuk vey
+                                                            a esitse karsilasti
+                                                            rmayi atla
+   21 00000038 E1A02003        MOV              r2, r3      ; temp = a[i] ; buy
+                                                            ukse temp'e yani r2
+                                                            'ye a[i] at
+   22 0000003C E5834000        STR              r4, [r3]    ; a[i] = a[j]
+   23 00000040 E5842000        STR              r2, [r4]    ; a[j] = temp
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   24 00000044         ;--------karsilastirma bitti ----------
+   25 00000044         karsilastirmayiAtla
+   26 00000044 E28AA004        ADD              r10, r10, #4 ; icteki loop, diz
+                                                            inin ust sinirina g
+                                                            elmediyse, offset i
+                                                             dort byte kadar ar
+                                                            tir
+   27 00000048 E28BB001        ADD              r11, #1     ; icteki loop, dizi
+                                                            nin ust sinirina ge
+                                                            lmediyse, alt sinir
+                                                            i bir artir
+   28 0000004C EAFFFFF4        B                icLoopDon
+   29 00000050         icLoopSon
+   30 00000050         ;-------- icteki loop sonu--------
+   31 00000050 E2888004        ADD              r8, r8, #4  ; distaki loop, diz
+                                                            inin ust sinirina g
+                                                            elmediyse, offset i
+                                                             dort byte kadar ar
+                                                            tir
+   32 00000054 E2899001        ADD              r9, #1      ; distaki loop, diz
+                                                            inin ust sinirina g
+                                                            elmediyse, alt sini
+                                                            ri bir artir
+   33 00000058 EAFFFFEC        B                disLoopDon
+   34 0000005C         disLoopSon
+   35 0000005C 00000003 
+              00000000 
+              00000006 
+              00000002 
+              00000001 dizi    DCD              3, 0, 6, 2, 1
+   36 00000070                 END
+              00000000 
+Command Line: --debug --xref --bi --apcs=interwork --depend=.\odev1.d -o.\odev1
+.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include --predefine="__EVAL SETA 
+1" --list=.\odev1.lst odev1.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+disLoopDon 00000010
+
+Symbol: disLoopDon
+   Definitions
+      At line 7 in file odev1.s
+   Uses
+      At line 33 in file odev1.s
+Comment: disLoopDon used once
+disLoopSon 0000005C
+
+Symbol: disLoopSon
+   Definitions
+      At line 34 in file odev1.s
+   Uses
+      At line 9 in file odev1.s
+Comment: disLoopSon used once
+dizi 0000005C
+
+Symbol: dizi
+   Definitions
+      At line 35 in file odev1.s
+   Uses
+      At line 3 in file odev1.s
+Comment: dizi used once
+icLoopDon 00000024
+
+Symbol: icLoopDon
+   Definitions
+      At line 14 in file odev1.s
+   Uses
+      At line 28 in file odev1.s
+Comment: icLoopDon used once
+icLoopSon 00000050
+
+Symbol: icLoopSon
+   Definitions
+      At line 29 in file odev1.s
+   Uses
+      At line 16 in file odev1.s
+Comment: icLoopSon used once
+karsilastirmayiAtla 00000044
+
+Symbol: karsilastirmayiAtla
+   Definitions
+      At line 25 in file odev1.s
+   Uses
+      At line 20 in file odev1.s
+Comment: karsilastirmayiAtla used once
+ornek 00000000
+
+Symbol: ornek
+   Definitions
+      At line 1 in file odev1.s
+   Uses
+      None
+Comment: ornek unused
+7 symbols
+340 symbols in table

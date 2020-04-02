@@ -1,0 +1,8 @@
+--cpu ARM7TDMI
+".\test.o"
+".\lab_24.02.o"
+".\lab_09.03.o"
+".\odev1.o"
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x00001000 --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\24.02.map" -o .\24.02.2020
