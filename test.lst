@@ -86,6 +86,21 @@ ARM Macro Assembler    Page 2
    73 00000000         
    74 00000000         ;dizi DCD 1,2,3,4,5,6,7,8,9,10,11,12,13,14
    75 00000000         ;END
+   76 00000000         
+   77 00000000         ;AREA veriler,DATA,READWRITE 
+   78 00000000         ;Array DCD 0, 0, 0, 0, 0
+   79 00000000         
+   80 00000000         ;AREA ornek,CODE,READONLY
+   81 00000000         ;ENTRY
+   82 00000000         ;;LDR R6,=0X00001000
+   83 00000000         ;LDR R6,=Array
+   84 00000000         ;LDR R7,=dizi
+   85 00000000         ;LDR R3,[R7] 
+   86 00000000         ;STR R3,[R6]
+   87 00000000         ;LDR R2,[R6]
+   88 00000000         
+   89 00000000         ;dizi DCD 3, 20, 30, 40, 50
+   90 00000000         ;END
                        
 Command Line: --debug --xref --bi --apcs=interwork --depend=.\test.d -o.\test.o
  -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include --predefine="__EVAL SETA 1"

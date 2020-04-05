@@ -73,3 +73,18 @@
 	
 ;dizi DCD 1,2,3,4,5,6,7,8,9,10,11,12,13,14
 	;END
+	
+	;AREA veriler,DATA,READWRITE	
+;Array DCD 0, 0, 0, 0, 0
+	
+	;AREA ornek,CODE,READONLY
+	;ENTRY
+	;;LDR R6,=0X00001000
+	;LDR R6,=Array
+	;LDR R7,=dizi
+	;LDR R3,[R7]	
+	;STR R3,[R6]
+	;LDR R2,[R6]
+	
+;dizi DCD 3, 20, 30, 40, 50
+	;END
