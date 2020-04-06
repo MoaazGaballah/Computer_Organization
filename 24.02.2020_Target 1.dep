@@ -3,4 +3,4 @@ F (.\test.s)(0x5E89BA96)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=inte
 F (.\lab_24.02.s)(0x5E64E6C5)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\lab_24.02.lst --xref -o .\lab_24.02.o --depend .\lab_24.02.d)
 F (.\lab_09.03.s)(0x5E89B31A)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\lab_09.03.lst --xref -o .\lab_09.03.o --depend .\lab_09.03.d)
 F (.\odev1.s)(0x5E89AF03)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\odev1.lst --xref -o .\odev1.o --depend .\odev1.d)
-F (.\odev1son.s)(0x5E8A45AF)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\odev1son.lst --xref -o .\odev1son.o --depend .\odev1son.d)
+F (.\odev1son.s)(0x5E8A4A99)(--cpu ARM7TDMI --bi --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include--list .\odev1son.lst --xref -o .\odev1son.o --depend .\odev1son.d)

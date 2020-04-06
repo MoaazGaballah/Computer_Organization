@@ -27,10 +27,10 @@ ARM Macro Assembler    Page 1
    21 00000000         ;}
    22 00000000                 AREA             ornek, CODE, READONLY
    23 00000000                 ENTRY
-   24 00000000 E59F50C4        LDR              r5, =counterDizisi ; dizinin ad
+   24 00000000 E59F50CC        LDR              r5, =counterDizisi ; dizinin ad
                                                             dresi (dizinin basl
                                                             angici) 
-   25 00000004 E59F60C4        LDR              r6, =inputDizisi ; dizinin addr
+   25 00000004 E59F60CC        LDR              r6, =inputDizisi ; dizinin addr
                                                             esi (dizinin baslan
                                                             gici)
    26 00000008         
@@ -113,7 +113,7 @@ ARM Macro Assembler    Page 2
    58 00000058 E15C000A        CMP              r12, r10    ; distaki loop, diz
                                                             inin sinirina geldi
                                                              mi
-   59 0000005C CA00000A        BGT              disLoopSon  ; distaki loop, diz
+   59 0000005C CA00000C        BGT              disLoopSon  ; distaki loop, diz
                                                             inin sinirina geldi
                                                             yse loop u bitir
    60 00000060 E795300B        LDR              r3, [r5, r11] ; distaki loop, c
@@ -126,7 +126,7 @@ ARM Macro Assembler    Page 2
    63 00000064         icLoopDon
    64 00000064 E3530000        CMP              r3, #0      ; icteki loop, sifi
                                                             r olana kadar don
-   65 00000068 DA000004        BLE              icLoopSon   ; icteki loop, dizi
+   65 00000068 DA000006        BLE              icLoopSon   ; icteki loop, dizi
                                                             nin sinirina geldiy
 
 
@@ -141,25 +141,30 @@ ARM Macro Assembler    Page 3
    67 00000070 E2822001        ADD              r2, r2, #1  ; ndx = ndx + 1
    68 00000074 E2433001        SUB              r3, r3, #1  ; r3 = counter[i] -
                                                              1
-   69 00000078 E785300C        STR              r3, [r5, r12]
-   70 0000007C EAFFFFF8        B                icLoopDon
-   71 00000080         icLoopSon
-   72 00000080         ;-------- icteki loop sonu--------
-   73 00000080         
-   74 00000080 E28BB004        ADD              r11, r11, #4 ; distaki loop, di
+   69 00000078 E3A01004        LDR              r1, =4      ; bu dort counterDi
+                                                            zisindeki atlamalar
+                                                             icin, MUL komutund
+                                                            a kullanilacak 
+   70 0000007C E008019C        MUL              r8, r12, r1
+   71 00000080 E7853008        STR              r3, [r5, r8]
+   72 00000084 EAFFFFF6        B                icLoopDon
+   73 00000088         icLoopSon
+   74 00000088         ;-------- icteki loop sonu--------
+   75 00000088         
+   76 00000088 E28BB004        ADD              r11, r11, #4 ; distaki loop, di
                                                             zinin ust sinirina 
                                                             gelmediyse, offset 
                                                             i dort byte kadar a
                                                             rtir
-   75 00000084 E28CC001        ADD              r12, #1     ; distaki loop, diz
+   77 0000008C E28CC001        ADD              r12, #1     ; distaki loop, diz
                                                             inin ust sinirina g
                                                             elmediyse, alt sini
                                                             ri bir artir
-   76 00000088 EAFFFFF2        B                disLoopDon
-   77 0000008C         disLoopSon
-   78 0000008C         ;-------- ikinci, distaki loop sonu--------
-   79 0000008C         
-   80 0000008C 00000003 
+   78 00000090 EAFFFFF0        B                disLoopDon
+   79 00000094         disLoopSon
+   80 00000094         ;-------- ikinci, distaki loop sonu--------
+   81 00000094         
+   82 00000094 00000003 
               00000004 
               00000006 
               00000002 
@@ -168,7 +173,7 @@ ARM Macro Assembler    Page 3
               00000003 
               00000005 inputDizisi
                                DCD              3, 4, 6, 2, 1, 1, 3, 5
-   81 000000AC 00000000 
+   83 000000B4 00000000 
               00000000 
               00000000 
               00000000 
@@ -177,7 +182,7 @@ ARM Macro Assembler    Page 3
               00000000 
               00000000 counterDizisi
                                DCD              0, 0, 0, 0, 0, 0, 0 ,0
-   82 000000CC                 END
+   84 000000D4                 END
               00000000 
               00000000 
 Command Line: --debug --xref --bi --apcs=interwork --depend=.\odev1son.d -o.\od
@@ -205,11 +210,11 @@ Symbol: birinciLoopSon
    Uses
       At line 34 in file odev1son.s
 Comment: birinciLoopSon used once
-counterDizisi 000000AC
+counterDizisi 000000B4
 
 Symbol: counterDizisi
    Definitions
-      At line 81 in file odev1son.s
+      At line 83 in file odev1son.s
    Uses
       At line 24 in file odev1son.s
 Comment: counterDizisi used once
@@ -219,13 +224,13 @@ Symbol: disLoopDon
    Definitions
       At line 57 in file odev1son.s
    Uses
-      At line 76 in file odev1son.s
+      At line 78 in file odev1son.s
 Comment: disLoopDon used once
-disLoopSon 0000008C
+disLoopSon 00000094
 
 Symbol: disLoopSon
    Definitions
-      At line 77 in file odev1son.s
+      At line 79 in file odev1son.s
    Uses
       At line 59 in file odev1son.s
 Comment: disLoopSon used once
@@ -235,17 +240,17 @@ Symbol: icLoopDon
    Definitions
       At line 63 in file odev1son.s
    Uses
-      At line 70 in file odev1son.s
+      At line 72 in file odev1son.s
 Comment: icLoopDon used once
-icLoopSon 00000080
+icLoopSon 00000088
 
 Symbol: icLoopSon
    Definitions
-      At line 71 in file odev1son.s
+      At line 73 in file odev1son.s
    Uses
       At line 65 in file odev1son.s
 Comment: icLoopSon used once
-inputDizisi 0000008C
+inputDizisi 00000094
 
 Symbol: inputDizisi
 
@@ -255,7 +260,7 @@ ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 80 in file odev1son.s
+      At line 82 in file odev1son.s
    Uses
       At line 25 in file odev1son.s
 Comment: inputDizisi used once

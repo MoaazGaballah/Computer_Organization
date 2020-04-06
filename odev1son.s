@@ -66,7 +66,9 @@ icLoopDon
 	STR r12, [r5, r2] ; input[ndx] = i
 	ADD r2, r2, #1 ; ndx = ndx + 1
 	SUB r3, r3, #1 ; r3 = counter[i] - 1
-	STR r3, [r5, r12]
+	LDR r1, =4 ; bu dort counterDizisindeki atlamalar icin, MUL komutunda kullanilacak 
+	MUL r8, r12, r1
+	STR r3, [r5, r8]
 	B icLoopDon
 icLoopSon
 ;-------- icteki loop sonu--------
